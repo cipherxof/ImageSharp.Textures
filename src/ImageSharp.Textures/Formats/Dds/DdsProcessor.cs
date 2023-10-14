@@ -165,8 +165,8 @@ namespace SixLabors.ImageSharp.Textures.Formats.Dds
 
                 mipMaps[i] = new MipMap<TBlock>(blockFormat, mipData, width, height);
 
-                width >>= 1;
-                height >>= 1;
+                width = Math.Max(1, width / 2);
+                height = Math.Max(1, height / 2);
             }
 
             return mipMaps;

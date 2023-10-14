@@ -99,8 +99,8 @@ namespace SixLabors.ImageSharp.Textures.Formats.Dds
                         }
 
                         depths >>= 1;
-                        width >>= 1;
-                        height >>= 1;
+                        width = Math.Max(1, width / 2);
+                        height = Math.Max(1, height / 2);
                     }
 
                     texture.Slices.AddRange(surfaces);
