@@ -311,8 +311,8 @@ namespace SixLabors.ImageSharp.Textures.Formats.Ktx2
                 ReadTextureData(stream, mipMapData);
                 mipMaps[i] = new MipMap<TBlock>(blockFormat, mipMapData, width, height);
 
-                width >>= 1;
-                height >>= 1;
+                width = Math.Max(1, width / 2);
+                height = Math.Max(1, height / 2);
             }
 
             return mipMaps;
@@ -338,8 +338,8 @@ namespace SixLabors.ImageSharp.Textures.Formats.Ktx2
                 cubeMapTexture.PositiveZ.MipMaps.Add(ReadFaceTexture(stream, width, height, blockFormat, dataForEachFace));
                 cubeMapTexture.NegativeZ.MipMaps.Add(ReadFaceTexture(stream, width, height, blockFormat, dataForEachFace));
 
-                width >>= 1;
-                height >>= 1;
+                width = Math.Max(1, width / 2);
+                height = Math.Max(1, height / 2);
             }
 
             return cubeMapTexture;
