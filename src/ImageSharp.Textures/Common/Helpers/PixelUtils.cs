@@ -42,5 +42,21 @@ namespace SixLabors.ImageSharp.Textures.Common.Helpers
             dest.G = PixelUtils.GetBytesFrom6BitValue(g);
             dest.B = PixelUtils.GetBytesFrom5BitValue(b);
         }
+
+        /// <summary>
+        /// Extracts the R5G6B5 values from a packed ushort pixel in that order.
+        /// </summary>
+        /// <param name="color">The packed color.</param>
+        /// <param name="dest">The extracted color.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void ExtractR5G6B5(ushort color, ref Rgba32 dest)
+        {
+            var r = (color & 0xF800) >> 11;
+            var g = (color & 0x7E0) >> 5;
+            var b = color & 0x1f;
+            dest.R = PixelUtils.GetBytesFrom5BitValue(r);
+            dest.G = PixelUtils.GetBytesFrom6BitValue(g);
+            dest.B = PixelUtils.GetBytesFrom5BitValue(b);
+        }
     }
 }
